@@ -1,42 +1,64 @@
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class DialogManager : MonoBehaviour
 {
-    [Header("Referencias UI")]
+    [Header("UI")]
     public GameObject panelInput;
     public TMP_InputField inputNombre;
+    public TextMeshProUGUI textoDialogo;
+    public GameObject botonContinuar; // 👈 NUEVO
+
+    [Header("Texto siguiente")]
+    [TextArea]
+    public string siguienteMensaje;
+
+    public float velocidad = 0.05f;
 
     void Start()
     {
         panelInput.SetActive(false);
+        botonContinuar.SetActive(false); // 👈 oculto al inicio
     }
 
-    // Mostrar input cuando termina el di�logo
     public void ShowInput()
     {
         panelInput.SetActive(true);
         inputNombre.ActivateInputField();
     }
 
-    // Guardar nombre
     public void SaveName()
     {
-        string nombre = inputNombre.text;
+        string nombre = inputNombre.text.ToUpper();
 
         if (!string.IsNullOrEmpty(nombre))
         {
             PlayerPrefs.SetString("PlayerName", nombre);
             PlayerPrefs.Save();
 
-            Debug.Log("Nombre guardado: " + nombre);
+            // Ocultar input
+            panelInput.SetActive(false);
 
-            // OPCIONAL: cambiar de escena
-            // SceneController.instance.LoadScene("ARScene");
+            // Reemplazar nombre en texto
+            string mensajeFinal = siguienteMensaje.Replace("{nombre}", nombre);
+
+            StopAllCoroutines();
+            StartCoroutine(EscribirTexto(mensajeFinal));
         }
-        else
+    }
+
+    IEnumerator EscribirTexto(string mensaje)
+    {
+        textoDialogo.text = "";
+
+        foreach (char letra in mensaje)
         {
-            Debug.Log("Ingrese un nombre v�lido");
+            textoDialogo.text += letra;
+            yield return new WaitForSeconds(velocidad);
         }
+
+        // 👇 AQUÍ aparece el botón cuando termina el segundo diálogo
+        botonContinuar.SetActive(true);
     }
 }

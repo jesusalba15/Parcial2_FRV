@@ -10,19 +10,9 @@ public class SceneController : MonoBehaviour
     public CanvasGroup fadeGroup;
     public float fadeDuration = 1f;
 
-    void Awake()
-    {
-        // Singleton
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+    
+    
+    
 
     void Start()
     {
