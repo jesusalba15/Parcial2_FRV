@@ -1182,7 +1182,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &398207243
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3082,6 +3082,7 @@ GameObject:
   - component: {fileID: 683296979}
   - component: {fileID: 683296981}
   - component: {fileID: 683296980}
+  - component: {fileID: 683296982}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -3147,6 +3148,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 683296978}
   m_CullTransparentMesh: 1
+--- !u!114 &683296982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 683296978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c7d491134323cb489f36ffefa2057cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuResultados
+  textoResultados: {fileID: 2083355015}
 --- !u!1 &719503696
 GameObject:
   m_ObjectHideFlags: 0
@@ -5576,8 +5590,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 396}
-  m_SizeDelta: {x: 169.6532, y: 148.353}
+  m_AnchoredPosition: {x: 0, y: 361}
+  m_SizeDelta: {x: 259.9245, y: 227.2906}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1617027872
 MonoBehaviour:
@@ -7309,9 +7323,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\xA1Celebra en este mes de Mayo un gran evento en YAWA junto a fans!\n\nDisfruta
-    de una gran experiencia interactiva AR y de diferentes espacios tem\xE1ticos,
-    adentr\xE1ndote en el extenso e interesante universo de STAR WARS. "
+  m_text: No hay resultados...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9d24e6b3ecd1d2b479a31d3d0e7b1f9e, type: 2}
   m_sharedMaterial: {fileID: 21148088844906328, guid: 9d24e6b3ecd1d2b479a31d3d0e7b1f9e, type: 2}
@@ -7345,8 +7357,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 2
   m_wordSpacing: 24.52
