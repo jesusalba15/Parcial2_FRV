@@ -62,10 +62,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4c59bd56aa435d94ea522d791a7423a6, type: 3}
       propertyPath: m_Name
-      value: Nave1 1
+      value: Nave1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4c59bd56aa435d94ea522d791a7423a6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -4423839914367261311}
   m_SourcePrefab: {fileID: 100100000, guid: 4c59bd56aa435d94ea522d791a7423a6, type: 3}
+--- !u!1 &4257339592806472868 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4c59bd56aa435d94ea522d791a7423a6, type: 3}
+  m_PrefabInstance: {fileID: 4022965832830329333}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-4423839914367261311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4257339592806472868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de462185b120d0d4b8412ee7c74e9454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NaveBatallaIA
+  objetivoCentral: {fileID: 0}
+  velocidadVuelo: 5
+  radioOrbita: 2
+  prefabLaser: {fileID: 0}
+  puntoDisparo: {fileID: 0}
+  tiempoMinEntreDisparos: 2
+  tiempoMaxEntreDisparos: 6
