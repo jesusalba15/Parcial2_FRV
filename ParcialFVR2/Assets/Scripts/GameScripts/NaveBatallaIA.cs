@@ -7,43 +7,70 @@ public class NaveBatallaIA : MonoBehaviour
     public Transform objetivoCentral;
     public float velocidadVuelo = 5f;
     public float radioOrbita = 2f;
+    public float distanciaMaximaDesaparecer = 25f; 
 
     private Vector3 ejeRotacion;
     private float offsetRuido;
+    private bool estaDerribada = false;
+    private Rigidbody rb;
 
     [Header("Combate")]
     public GameObject prefabLaser;
+    public GameObject prefabExplosion; 
     public Transform[] puntosDisparo;
-    public float tiempoMinEntreDisparos = 2f;
-    public float tiempoMaxEntreDisparos = 6f;
+    public float tiempoMinEntreDisparos = 3f; 
+    public float tiempoMaxEntreDisparos = 8f;
+
+    void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     void Start()
     {
-      
         ejeRotacion = Random.onUnitSphere;
         offsetRuido = Random.Range(0f, 100f);
+
+        if (rb != null)
+        {
+            rb.useGravity = false;
+            rb.isKinematic = false; 
+        }
 
         StartCoroutine(RutinaDisparo());
     }
 
     void Update()
     {
+        
+        if (estaDerribada)
+        {
+            CheckLimpieza();
+            return;
+        }
+
         if (objetivoCentral == null) return;
 
-        
+        ManejarVuelo();
+    }
+
+    void ManejarVuelo()
+    {
         Vector3 direccionAlCentro = transform.position - objetivoCentral.position;
-        Vector3 posicionDeseada = objetivoCentral.position + direccionAlCentro.normalized * radioOrbita;
 
         
+        if (direccionAlCentro.magnitude > distanciaMaximaDesaparecer)
+        {
+            Destroy(gameObject);
+        }
+
+        Vector3 posicionDeseada = objetivoCentral.position + direccionAlCentro.normalized * radioOrbita;
         float ruidoY = Mathf.PerlinNoise(Time.time, offsetRuido) * 2f - 1f;
         posicionDeseada += transform.up * ruidoY * Time.deltaTime;
 
         transform.position = Vector3.Lerp(transform.position, posicionDeseada, Time.deltaTime * 2f);
-
-        
         transform.RotateAround(objetivoCentral.position, ejeRotacion, velocidadVuelo * Time.deltaTime * 10f);
 
-       
         Vector3 direccionVuelo = Vector3.Cross(direccionAlCentro, ejeRotacion).normalized;
         if (direccionVuelo != Vector3.zero)
         {
@@ -52,9 +79,58 @@ public class NaveBatallaIA : MonoBehaviour
         }
     }
 
+    
+    private void OnCollisionEnter(Collision collision)
+    {
+        
+        if (collision.gameObject.CompareTag("Laser") && !estaDerribada)
+        {
+            
+            Destroy(collision.gameObject);
+
+            ExplotarYCaer();
+        }
+    }
+
+    void ExplotarYCaer()
+    {
+        estaDerribada = true;
+        StopAllCoroutines(); 
+
+        
+        if (prefabExplosion != null)
+        {
+            
+            GameObject exp = Instantiate(prefabExplosion, transform.position, transform.rotation);
+            Destroy(exp, 2f);
+        }
+
+        // 2. Física de caída
+        if (rb != null)
+        {
+            rb.useGravity = true;
+            
+            rb.linearVelocity = transform.forward * 1.5f;
+            rb.AddTorque(Random.insideUnitSphere * 12f, ForceMode.Impulse);
+        }
+
+        
+        Destroy(gameObject, 3.5f);
+    }
+
+    void CheckLimpieza()
+    {
+        
+        if (Vector3.Distance(transform.position, objetivoCentral.position) > distanciaMaximaDesaparecer)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    // --- DISPAROS ---
     IEnumerator RutinaDisparo()
     {
-        while (true)
+        while (!estaDerribada)
         {
             yield return new WaitForSeconds(Random.Range(tiempoMinEntreDisparos, tiempoMaxEntreDisparos));
             Disparar();
@@ -65,17 +141,15 @@ public class NaveBatallaIA : MonoBehaviour
     {
         if (prefabLaser != null && puntosDisparo.Length > 0)
         {
-            // Recorremos todos los puntos de la lista y disparamos desde cada uno
             foreach (Transform punto in puntosDisparo)
             {
                 GameObject laser = Instantiate(prefabLaser, punto.position, punto.rotation);
-                Destroy(laser, 1.5f);
+                Destroy(laser, 1.2f);
 
-                Rigidbody rb = laser.GetComponent<Rigidbody>();
-                if (rb != null)
+                Rigidbody laserRb = laser.GetComponent<Rigidbody>();
+                if (laserRb != null)
                 {
-                    // Usamos la propiedad actualizada para evitar el error CS0618
-                    rb.linearVelocity = punto.forward * 25f;
+                    laserRb.linearVelocity = punto.forward * 30f;
                 }
             }
         }
