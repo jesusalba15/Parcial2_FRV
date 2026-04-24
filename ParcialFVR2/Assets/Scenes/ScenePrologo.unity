@@ -346,8 +346,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 294, y: 80}
+  m_AnchoredPosition: {x: -0.6003, y: -2.1004}
+  m_SizeDelta: {x: 224.3839, y: 83.0006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &209153146
 MonoBehaviour:
@@ -369,7 +369,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: CONTINUAR>>
+  m_text: CONTINUAR
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 20d0a69f4373c5547abee99158a8da93, type: 2}
   m_sharedMaterial: {fileID: 1832399933202728415, guid: 20d0a69f4373c5547abee99158a8da93, type: 2}
@@ -396,12 +396,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 34.1
+  m_fontSize: 32.4
   m_fontSizeBase: 33.5
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 34.1
+  m_fontSizeMax: 32.4
   m_fontStyle: 18
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -1911,8 +1911,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -205, y: -267}
-  m_SizeDelta: {x: 293.38, y: 80}
+  m_AnchoredPosition: {x: -185, y: -276}
+  m_SizeDelta: {x: 248.8, y: 108.0223}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1386889272
 GameObject:
@@ -2327,7 +2327,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.595
+  m_MatchWidthOrHeight: 0.864
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
