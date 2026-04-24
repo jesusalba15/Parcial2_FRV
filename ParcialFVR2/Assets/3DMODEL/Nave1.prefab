@@ -62,19 +62,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4c59bd56aa435d94ea522d791a7423a6, type: 3}
       propertyPath: m_Name
-<<<<<<< HEAD
-      value: Nave1 1
-=======
       value: Nave1
->>>>>>> Santiago
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-<<<<<<< HEAD
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4c59bd56aa435d94ea522d791a7423a6, type: 3}
-=======
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4c59bd56aa435d94ea522d791a7423a6, type: 3}
       insertIndex: -1
@@ -104,4 +96,3 @@ MonoBehaviour:
   puntoDisparo: {fileID: 0}
   tiempoMinEntreDisparos: 2
   tiempoMaxEntreDisparos: 6
->>>>>>> Santiago
