@@ -8,7 +8,7 @@ public class DialogManager : MonoBehaviour
     public GameObject panelInput;
     public TMP_InputField inputNombre;
     public TextMeshProUGUI textoDialogo;
-    public GameObject botonContinuar; // 👈 NUEVO
+    public GameObject botonContinuar;
 
     [Header("Texto siguiente")]
     [TextArea]
@@ -19,7 +19,7 @@ public class DialogManager : MonoBehaviour
     void Start()
     {
         panelInput.SetActive(false);
-        botonContinuar.SetActive(false); // 👈 oculto al inicio
+        botonContinuar.SetActive(false);
     }
 
     public void ShowInput()
@@ -30,17 +30,33 @@ public class DialogManager : MonoBehaviour
 
     public void SaveName()
     {
-        string nombre = inputNombre.text.ToUpper();
+        string nombre = inputNombre.text.Trim().ToUpper();
 
         if (!string.IsNullOrEmpty(nombre))
         {
+            // 🔥 GUARDAR LISTA DE JUGADORES
+            string lista = PlayerPrefs.GetString("PlayerList", "");
+
+            if (lista == "")
+            {
+                lista = nombre;
+            }
+            else
+            {
+                lista += "|" + nombre;
+            }
+
+            PlayerPrefs.SetString("PlayerList", lista);
+
+            // Guardar último jugador (para usar en otras escenas)
             PlayerPrefs.SetString("PlayerName", nombre);
+
             PlayerPrefs.Save();
 
             // Ocultar input
             panelInput.SetActive(false);
 
-            // Reemplazar nombre en texto
+            // Mostrar siguiente diálogo con nombre
             string mensajeFinal = siguienteMensaje.Replace("{nombre}", nombre);
 
             StopAllCoroutines();
@@ -58,7 +74,6 @@ public class DialogManager : MonoBehaviour
             yield return new WaitForSeconds(velocidad);
         }
 
-        // 👇 AQUÍ aparece el botón cuando termina el segundo diálogo
         botonContinuar.SetActive(true);
     }
 }
