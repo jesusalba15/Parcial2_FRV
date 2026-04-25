@@ -1945,7 +1945,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneController
   fadeGroup: {fileID: 600122223}
-  fadeDuration: 3
+  fadeDuration: 2
 --- !u!4 &1386889274
 Transform:
   m_ObjectHideFlags: 0
