@@ -2,17 +2,44 @@ using UnityEngine;
 
 public class VictoriaManager : MonoBehaviour
 {
+    
+    public static float PuntajeFinal;
+
+  
+    public void Victoria(float scoreRecibido)
+    {
+        
+        PuntajeFinal = scoreRecibido;
+
+       
+        EjecutarLogicaVictoria();
+    }
+
+    
     public void Victoria()
+    {
+        EjecutarLogicaVictoria();
+    }
+
+    private void EjecutarLogicaVictoria()
     {
         GameState.gano = true;
 
-        // Reemplaza FindObjectOfType por FindFirstObjectByType para evitar el uso de API obsoleta
+        // Detenemos el tiempo
         var timerManager = Object.FindFirstObjectByType<TimerManager>();
         if (timerManager != null)
         {
             timerManager.DetenerYGuardarTiempo();
         }
 
-        SceneController.instance.LoadScene("Epilogo");
+      
+        if (SceneController.instance != null)
+        {
+            SceneController.instance.LoadScene("Victoria");
+        }
+        else
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Victoria");
+        }
     }
 }

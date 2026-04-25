@@ -1676,6 +1676,7 @@ GameObject:
   - component: {fileID: 731367312}
   - component: {fileID: 731367314}
   - component: {fileID: 731367313}
+  - component: {fileID: 731367315}
   m_Layer: 5
   m_Name: PanelPuntaje
   m_TagString: Untagged
@@ -1742,6 +1743,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 731367311}
   m_CullTransparentMesh: 1
+--- !u!114 &731367315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731367311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18cb2e6ef0feb0d41b0651de7d0ccbac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MostradorPuntaje
+  textoPuntajeUI: {fileID: 437632309}
+  velocidadAnimacion: 100
+  textoTiempoUI: {fileID: 380625680}
+  tiempoMaximoConfigurado: 60
 --- !u!82 &1092400056 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 6432767693318063044, guid: 95bf372bd31e6dc49ac2ae275ea71fcd, type: 3}
