@@ -6,7 +6,7 @@ public class TimerManager : MonoBehaviour
     public TextMeshProUGUI textoTimer;
     public float tiempoMax = 60f;
 
-    private float tiempoActual;
+    public float tiempoActual;
     private bool corriendo = false;
 
     void Start()
@@ -51,7 +51,7 @@ public class TimerManager : MonoBehaviour
     public void DetenerYGuardarTiempo()
     {
         corriendo = false;
-
+        
         PlayerPrefs.SetFloat("TiempoRestante", tiempoActual);
         PlayerPrefs.Save();
     }
