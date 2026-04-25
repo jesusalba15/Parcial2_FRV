@@ -154,10 +154,10 @@ RectTransform:
   - {fileID: 530212686}
   m_Father: {fileID: 458088937}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 9}
-  m_SizeDelta: {x: -331.4794, y: -1615.6487}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 899.5122, y: 352.35132}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &34822033
 MonoBehaviour:
@@ -280,6 +280,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1937838729}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1710895886}
         m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
         m_MethodName: LoadScene
@@ -2346,8 +2358,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2.2653198, y: 12.201904}
-  m_SizeDelta: {x: 81.5437, y: 57.9004}
+  m_AnchoredPosition: {x: -2.2697754, y: -2.6577759}
+  m_SizeDelta: {x: 81.535, y: 87.6198}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &561766089
 PrefabInstance:
@@ -6932,6 +6944,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1937838729}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1710895886}
         m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
         m_MethodName: LoadScene
@@ -6941,7 +6965,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: SceneEpilogo
+          m_StringArgument: Victoria
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 258875089}
@@ -7196,10 +7220,10 @@ RectTransform:
   - {fileID: 1236332049}
   - {fileID: 741346733}
   - {fileID: 1981464601}
-  - {fileID: 533443848}
   - {fileID: 595971758}
   - {fileID: 258875086}
   - {fileID: 458088937}
+  - {fileID: 533443848}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
