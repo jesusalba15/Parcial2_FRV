@@ -51,8 +51,22 @@ public class TimerManager : MonoBehaviour
     public void DetenerYGuardarTiempo()
     {
         corriendo = false;
-        
+        GuardarTiempo();
+    }
+
+    void OnDisable()
+    {
+        if (corriendo)
+        {
+            GuardarTiempo();
+        }
+    }
+
+    void GuardarTiempo()
+    {
         PlayerPrefs.SetFloat("TiempoRestante", tiempoActual);
         PlayerPrefs.Save();
+
+        Debug.Log("Tiempo guardado automáticamente: " + tiempoActual);
     }
 }

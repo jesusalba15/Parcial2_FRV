@@ -1,31 +1,27 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
 
 public class MisionEstrellaDeLaMuerte : MonoBehaviour
 {
-    [Header("Configuración de Misión")]
-    [Tooltip("Cantidad total de puntos críticos a destruir")]
+    [Header("ConfiguraciÃ³n de MisiÃ³n")]
     public int totalObjetivos = 5;
     private int objetivosRestantes;
 
-    [Header("Objetos de la Misión")]
-    [Tooltip("El Canvas que flota sobre la Estrella con el texto")]
+    [Header("UI")]
     public Canvas canvasMision;
-    [Tooltip("El texto TMP que dice '5/5 Puntos Críticos'")]
     public TextMeshProUGUI textoContador;
-    [Tooltip("La esfera que representa el punto crítico activo (debe tener un Collider Trigger)")]
+
+    [Header("Objetos")]
     public GameObject puntoCriticoVisual;
-    [Tooltip("El prefab de la explosión cuando aciertas")]
     public GameObject prefabExplosion;
 
-    [Header("Puntos de Aparición")]
-    [Tooltip("Arrastra aquí varios objetos vacíos (Empty) posicionados alrededor de la superficie de la Estrella")]
+    [Header("Posiciones")]
     public List<Transform> posicionesPosibles;
     private int indiceUltimaPosicion = -1;
 
-    [Header("Efectos de UI")]
+    [Header("Efectos UI")]
     public float duracionTitileo = 0.5f;
     public Color colorNormal = Color.white;
     public Color colorDanio = Color.red;
@@ -40,20 +36,24 @@ public class MisionEstrellaDeLaMuerte : MonoBehaviour
         if (textoContador != null)
             textoContador.color = colorNormal;
 
+        // ðŸ”¥ Iniciar Timer automÃ¡ticamente
         var timer = Object.FindFirstObjectByType<TimerManager>();
         if (timer != null) timer.IniciarTimer();
 
+        // ðŸ”¥ Configurar punto crÃ­tico
         if (puntoCriticoVisual != null)
         {
             DetectorImpactoJugador detector = puntoCriticoVisual.GetComponent<DetectorImpactoJugador>();
-            if (detector == null) detector = puntoCriticoVisual.AddComponent<DetectorImpactoJugador>();
+            if (detector == null)
+                detector = puntoCriticoVisual.AddComponent<DetectorImpactoJugador>();
+
             detector.misionManager = this;
 
             MoverPuntoCritico();
         }
         else
         {
-            Debug.LogError("¡Falta el objeto Punto Critico Visual en el script!");
+            Debug.LogError("Falta asignar el Punto Critico Visual");
         }
     }
 
@@ -84,7 +84,7 @@ public class MisionEstrellaDeLaMuerte : MonoBehaviour
     {
         if (posicionesPosibles.Count < 2)
         {
-            Debug.LogWarning("Necesitas al menos 2 posiciones posibles para que el punto cambie.");
+            Debug.LogWarning("Se necesitan al menos 2 posiciones.");
             return;
         }
 
@@ -122,45 +122,47 @@ public class MisionEstrellaDeLaMuerte : MonoBehaviour
     {
         if (textoContador != null)
         {
-            textoContador.text = objetivosRestantes + " / " + totalObjetivos + " PUNTOS CRÍTICOS";
+            textoContador.text = objetivosRestantes + " / " + totalObjetivos + " PUNTOS CRITICOS";
         }
     }
 
-    // --- LÓGICA DE FINALIZACIÓN Y GUARDADO ---
+    // ðŸ”¥ FINALIZACIÃ“N DE MISIÃ“N
     public void FinalizarMision(bool victoria)
     {
         if (misionCompletada || !victoria) return;
+
         misionCompletada = true;
 
-        // 1. Calcular el Score basado en los objetivos
+        // ðŸ”¥ Marcar victoria
+        GameState.gano = true;
+
+        // ðŸ”¥ Calcular puntaje
         int puntosAcertados = totalObjetivos - objetivosRestantes;
         float porcentajeScore = ((float)puntosAcertados / totalObjetivos) * 100f;
 
-        // 2. BUSCAR EL TIMER Y GUARDAR DATOS EN EL DISCO
+        // ðŸ”¥ DETENER Y GUARDAR TIEMPO (CLAVE)
         var timerManager = Object.FindFirstObjectByType<TimerManager>();
         if (timerManager != null)
         {
-            // Detenemos el reloj y guardamos el tiempo que quedaba (Ej: 00:45)
-            // IMPORTANTE: Asegúrate que 'tiempoActual' en el script de tu amigo sea PUBLIC
-            PlayerPrefs.SetFloat("TiempoRestante", timerManager.tiempoActual);
             timerManager.DetenerYGuardarTiempo();
-            Debug.Log("Misión Finalizada. Tiempo guardado: " + timerManager.tiempoActual);
+            Debug.Log("Tiempo guardado correctamente: " + timerManager.tiempoActual);
+        }
+        else
+        {
+            Debug.LogWarning("No se encontrÃ³ TimerManager");
         }
 
-        // Guardamos el puntaje final
+        // ðŸ”¥ Guardar puntaje
         PlayerPrefs.SetFloat("PuntajeMision", porcentajeScore);
-
-        // 3. FORCE SAVE: Esto asegura que el dato no se pierda entre las 4 escenas
         PlayerPrefs.Save();
 
-        // 4. Iniciar transición a la escena "Victoria"
+        // ðŸ”¥ CAMBIO DE ESCENA
         if (SceneController.instance != null)
         {
             SceneController.instance.LoadScene("Victoria");
         }
         else
         {
-            // Plan B si no hay SceneController en la escena
             UnityEngine.SceneManagement.SceneManager.LoadScene("Victoria");
         }
     }

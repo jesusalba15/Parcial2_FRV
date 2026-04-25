@@ -9,21 +9,21 @@ public class FinalUI : MonoBehaviour
     void Start()
     {
         string nombre = PlayerPrefs.GetString("PlayerName", "PILOTO");
-        textoNombre.text = nombre;
-
         float tiempo = PlayerPrefs.GetFloat("TiempoRestante", 0f);
+
+        textoNombre.text = nombre;
 
         int minutos = Mathf.FloorToInt(tiempo / 60);
         int segundos = Mathf.FloorToInt(tiempo % 60);
 
         textoTiempo.text = string.Format("{0:00}:{1:00}", minutos, segundos);
 
-        if (GameState.gano && !PlayerPrefs.HasKey("ResultadoGuardado"))
+        Debug.Log("Tiempo recibido: " + tiempo);
+
+        // 🔥 GUARDAR SI GANÓ
+        if (GameState.gano)
         {
             GuardarResultado(nombre, tiempo);
-
-            PlayerPrefs.SetInt("ResultadoGuardado", 1);
-            PlayerPrefs.Save();
         }
     }
 
@@ -43,6 +43,6 @@ public class FinalUI : MonoBehaviour
         PlayerPrefs.SetString("PlayerResults", lista);
         PlayerPrefs.Save();
 
-        Debug.Log("GUARDADO: " + lista);
+        Debug.Log("GUARDADO EN HISTORIAL: " + lista);
     }
 }

@@ -10,6 +10,8 @@ public class MenuResultados : MonoBehaviour
     {
         string lista = PlayerPrefs.GetString("PlayerResults", "");
 
+        Debug.Log("PlayerResults: " + lista);
+
         if (!string.IsNullOrEmpty(lista))
         {
             string[] registros = lista.Split('|');
