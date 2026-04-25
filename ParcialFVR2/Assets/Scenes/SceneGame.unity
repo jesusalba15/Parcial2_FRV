@@ -1084,6 +1084,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TimerManager
   textoTimer: {fileID: 390295118}
   tiempoMax: 60
+  tiempoActual: 0
 --- !u!114 &258875090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6115,7 +6116,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -764.6525, y: 569.01245}
+  m_AnchoredPosition: {x: -530, y: 566}
   m_SizeDelta: {x: 203.946, y: 168.58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1567542187
@@ -6908,7 +6909,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0000019073, y: -139}
+  m_AnchoredPosition: {x: 0, y: -139}
   m_SizeDelta: {x: 340.075, y: 124.62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2050206211
