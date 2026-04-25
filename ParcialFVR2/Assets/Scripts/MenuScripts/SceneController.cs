@@ -10,18 +10,21 @@ public class SceneController : MonoBehaviour
     public CanvasGroup fadeGroup;
     public float fadeDuration = 1f;
 
-    
-    
-    
+    void Awake()
+    {
+        // 🔥 Cada escena tiene su propio controller
+        instance = this;
+    }
 
     void Start()
     {
-        // Asegura que empieza en negro y hace fade in
-        fadeGroup.alpha = 1;
-        StartCoroutine(FadeIn());
+        if (fadeGroup != null)
+        {
+            fadeGroup.alpha = 1;
+            StartCoroutine(FadeIn());
+        }
     }
 
-    // 🔹 Llamar desde botones
     public void LoadScene(string sceneName)
     {
         StartCoroutine(Transition(sceneName));
@@ -29,17 +32,10 @@ public class SceneController : MonoBehaviour
 
     IEnumerator Transition(string sceneName)
     {
-        // Fade a negro
-        yield return StartCoroutine(FadeOut());
+        if (fadeGroup != null)
+            yield return StartCoroutine(FadeOut());
 
-        // Cargar escena
         SceneManager.LoadScene(sceneName);
-
-        // Esperar un frame para asegurar carga
-        yield return null;
-
-        // Fade desde negro
-        StartCoroutine(FadeIn());
     }
 
     IEnumerator FadeIn()
@@ -55,6 +51,7 @@ public class SceneController : MonoBehaviour
         }
 
         fadeGroup.alpha = 0;
+        fadeGroup.blocksRaycasts = false;
     }
 
     IEnumerator FadeOut()

@@ -25,7 +25,10 @@ public class TimerManager : MonoBehaviour
             {
                 tiempoActual = 0;
                 corriendo = false;
-                GuardarTiempo();
+
+                GameState.gano = false;
+
+                SceneController.instance.LoadScene("GameOver");
             }
 
             ActualizarTexto();
@@ -45,15 +48,10 @@ public class TimerManager : MonoBehaviour
         corriendo = true;
     }
 
-    public void DetenerYGuardar()
+    public void DetenerYGuardarTiempo()
     {
         corriendo = false;
-        GuardarTiempo();
-    }
 
-    void GuardarTiempo()
-    {
-        // 🔥 Guardamos el tiempo restante
         PlayerPrefs.SetFloat("TiempoRestante", tiempoActual);
         PlayerPrefs.Save();
     }

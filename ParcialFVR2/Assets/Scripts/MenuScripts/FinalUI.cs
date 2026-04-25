@@ -18,7 +18,13 @@ public class FinalUI : MonoBehaviour
 
         textoTiempo.text = string.Format("{0:00}:{1:00}", minutos, segundos);
 
-        GuardarResultado(nombre, tiempo);
+        if (GameState.gano && !PlayerPrefs.HasKey("ResultadoGuardado"))
+        {
+            GuardarResultado(nombre, tiempo);
+
+            PlayerPrefs.SetInt("ResultadoGuardado", 1);
+            PlayerPrefs.Save();
+        }
     }
 
     void GuardarResultado(string nombre, float tiempo)

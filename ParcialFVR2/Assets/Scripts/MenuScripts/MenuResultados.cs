@@ -41,8 +41,8 @@ public class MenuResultados : MonoBehaviour
         }
         else
         {
-            textoNombres.text = "SIN DATOS";
-            textoTiempos.text = "";
+            textoNombres.text = "SIN";
+            textoTiempos.text = "REGISTROS";
         }
     }
 }
